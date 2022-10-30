@@ -8,8 +8,15 @@ before_action :is_matching_login_user, only: [:edit, :update]
   end
 
   def index
+    # side_menu
     @book = Book.new
-    @books = Book.all
+    
+    # main_menu
+    @books = Book.includes([:favorites, :week_favorites]).sort {
+      |a,b|
+      b.week_favorites.size <=>
+      a.week_favorites.size
+    }
   end
 
   def create
