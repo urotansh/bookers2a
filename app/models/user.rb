@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :books
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
+  has_many :messages
   
   # userとrelationshipsが1:Nの関係
   has_many :relationships, class_name: "Relationship",
