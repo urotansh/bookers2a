@@ -7,7 +7,7 @@
   <% @messages.each do |message| %>
   <tr>
     <td>
-      <%= message.user %>
+      <%= message.user.name %>
     </td>
     <td>
       <%= message.body %>
@@ -15,5 +15,6 @@
   <%end%>
 </table>
 <%= form_with model: [@user, @message] do |f| %>
-  <%= f.text_area :body, rows: "1", class: "form-control col-lg-3" %>
+  <%= f.text_field :body, rows: "1", class: "form-control col-lg-3" %>
+  <% f.submit %>
 <% end %>
