@@ -9,7 +9,16 @@
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
   		<table class='table'>
-  		  <tr>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+          <th>Favorite</th>
+          <th>Favorite<br>(last week)</th>
+          <th>Comment</th>
+          <th colspan="5"></th>
+        </tr>
+        <tr>
           <td>
             <%= link_to(@book.user) do %>
               <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
@@ -24,6 +33,9 @@
           </td>
           <td class="favorite-btn-<%= @book.id %>">
             <%= render 'favorites/favorite-btn', book: @book %>
+          </td>
+          <td class="favorite-btn-<%= @book.id %>">
+            <%= render 'favorites/favorite-btn-week', book: @book %>
           </td>
           <td class="comment_count">
             コメント数:<%= @book.book_comments.count %>

@@ -6,6 +6,7 @@
       <th>Title</th>
       <th>Opinion</th>
       <th>Favorite</th>
+      <th>Favorite<br>(last week)</th>
       <th>Comment</th>
       <th colspan="5"></th>
     </tr>
@@ -26,6 +27,9 @@
         </td>
         <td class="favorite-btn-<%= book.id %>">
           <%= render 'favorites/favorite-btn', book: book %>
+        </td>
+        <td class="favorite-btn-<%= book.id %>">
+          <%= render 'favorites/favorite-btn-week', book: book %>
         </td>
         <td>
           コメント数:<%= book.book_comments.count %>
