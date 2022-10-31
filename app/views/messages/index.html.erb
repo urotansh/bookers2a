@@ -1,7 +1,7 @@
 <h1><%= @user.name %> さんとのチャット</h1>
 <table class="table">
   <tr>
-    <th>User</th>
+    <th>Sender</th>
     <th>Message</th>
   </tr>
   <% @messages.each do |message| %>
@@ -18,7 +18,7 @@
   <% end %>
 </table>
 <%= form_with model: [@user, @message], id: "form_message" do |f| %>
-  <%= f.text_area :body, rows: "1", class: "form-control col-lg-3 m-3" %>
+  <%= f.text_area :body, rows: "3", class: "form-control col-lg-5 m-3", placeholder: "⌘ Enter (Mac) または Ctrl Enter (Windows) で送信" %>
   <% f.submit %>
 <% end %>
 <script>

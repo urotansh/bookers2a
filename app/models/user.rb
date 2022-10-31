@@ -53,6 +53,10 @@ class User < ApplicationRecord
     followers.exists?(id: user.id)
   end
   
+  def following?(user)
+    followings.exists?(id: user.id)
+  end
+  
   def self.search_for(keyword, search)
     
     #検索カラム
