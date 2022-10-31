@@ -10,7 +10,8 @@ class MessagesController < ApplicationController
   
   def create
     message = Message.new(message_params)
-    message.user_id = current_user.id
+    message.sender_id = current_user.id
+    message.recipient_id = params[:user_id]
     message.save
     redirect_to request.referer
   end

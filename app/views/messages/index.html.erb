@@ -5,14 +5,17 @@
     <th>Message</th>
   </tr>
   <% @messages.each do |message| %>
+  <% if (message.sender == @user || message.sender == current_user) && \
+        (message.recipient == @user || message.recipient == current_user) %>
   <tr>
     <td>
-      <%= message.user.name %>
+      <%= message.sender.name %>
     </td>
     <td>
       <%= raw(h(message.body).gsub(/\R/, "<br>")) %>
   </tr>
   <%end%>
+  <% end %>
 </table>
 <%= form_with model: [@user, @message], id: "form_message" do |f| %>
   <%= f.text_area :body, rows: "1", class: "form-control col-lg-3 m-3" %>

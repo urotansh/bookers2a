@@ -7,8 +7,8 @@ class User < ApplicationRecord
   has_many :books
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
-  has_many :messages
   
+  # Relationshipモデルとのアソシエーション
   # userとrelationshipsが1:Nの関係
   has_many :relationships, class_name: "Relationship",
                            foreign_key: "follower_id",
@@ -24,6 +24,20 @@ class User < ApplicationRecord
   
   # user->reverse_relationshipsテーブルを経由してfollower(user)テーブル参照
   has_many :followers, through: :reverse_relationships, source: :follower
+  
+  # Messageモデルとのアソシエーション
+  has_many :messages, class_name: "Message",
+                      foreign_key: "sender_id",
+                      dependent: :destroy
+                      
+  has_many :reverse_messages, class_name: "Message",
+                      foreign_key: "recipient_id",
+                      dependent: :destroy
+  
+  has_many :recipients, through: :messages, source: :recipient
+  
+  has_many :senders, through: :reverse_messages, source: :sender
+  
   
   has_one_attached :profile_image
 
